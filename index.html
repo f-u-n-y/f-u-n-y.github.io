@@ -2,19 +2,20 @@
 <html>
 <body>
 
-<h1 style='background-color:powderblue; text-align:center;'>funy</h1>
+<h1 style='background-color:darkorange; text-align:center;'>f-u-n-y</h1>
 
-<p>welcome to f-u-n-y</p>
+<p>welcome to f-u-n-y homepage!</p>
 
 <form id='valueform' action='/action_page.php'>
-  value: <input type='text' name='value'><br>
+  value: <input type='text' name='value' style='background-color:paleturquoise;'><br>
 </form> 
 
-<p>click "funy" to make the numbers become funny</p>
+<p>click "funy" to make the numbers  become funny</p>
 
-<button onclick='myFunction()' style='font-size:200%; font-family:timesnewroman; background-color:powderblue'>funy</button>
+<button onclick='myFunction()' style='font-size:200%; font-family:timesnewroman; background-color:mediumturquoise'>funy</button>
 
 <p id='test'></p>
+<p id='test2'></p>
 
 <script>
 function myFunction() {
@@ -22,9 +23,29 @@ function myFunction() {
   var text = "";
   var i;
   for (i = 0; i < x.length ;i++) {
-    text += x.elements[i].value + "<br>";
+    text += x.elements[i].value;
   }
-  document.getElementById('test').innerHTML = text;
+  var splitx = text.split("");
+  document.getElementById("test").innerHTML = splitx;
+  var imgsources = {
+    0:'images/0.jpeg',
+    1:'images/1.jpeg',
+    2:'images/2.jpeg',
+    3:'images/3.jpeg',
+    4:'images/4.jpeg',
+    5:'images/5.jpeg',
+    6:'images/6.jpeg',
+    7:'images/7.jpeg',
+    8:'images/8.jpeg',
+    9:'images/9.jpeg'
+  };
+  var imgsource = imgsources['5'];
+  document.getElementById("test2").innerHTML = imgsources[5];
+  var img = document.createElement("IMG");
+  img.setAttribute("src", imgsource);
+  img.setAttribute("width", 100);
+  document.body.appendChild(img);
+  }
 }
 </script>
 
