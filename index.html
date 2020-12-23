@@ -1,1 +1,32 @@
-'hello world'
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 style='background-color:powderblue; text-align:center;'>funy</h1>
+
+<p>welcome to f-u-n-y</p>
+
+<form id='valueform' action='/action_page.php'>
+  value: <input type='text' name='value'><br>
+</form> 
+
+<p>click "funy" to make the numbers become funny</p>
+
+<button onclick='myFunction()' style='font-size:200%; font-family:timesnewroman; background-color:powderblue'>funy</button>
+
+<p id='test'></p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById('valueform');
+  var text = "";
+  var i;
+  for (i = 0; i < x.length ;i++) {
+    text += x.elements[i].value + "<br>";
+  }
+  document.getElementById('test').innerHTML = text;
+}
+</script>
+
+</body>
+</html>
