@@ -1,55 +1,127 @@
 <!DOCTYPE html>
 <html>
-<body>
+    <body>
+        <!-- 
+        <h1 style='background-color:darkorange; text-align:center;'>f-u-n-y</h1>
+        
+        <p>welcome to f-u-n-y homepage!</p>
+        -->
+        
+        <form id='valueform' action='/action_page.php'>
+            value: <input type='text' name='value' style='background-color:paleturquoise;'><br>
+        </form> 
+        
+        <!--
+        <p>click "funy" to make the numbers become funny</p>
+        
+        <button onclick='value_to_jpg()' style='font-size:200%; font-family:timesnewroman; background-color:mediumturquoise'>funy</button>
+        -->
+        
+        <button onclick='value_to_jpg()' style='font-size:200%; font-family:timesnewroman; background-color:mediumturquoise'>***</button>
+        
+        <div id='_debug'></div>
+        <div id='_digits'></div>
+        
+        <canvas id="_canvas" width="100" height="100" style="border:1px solid #d3d3d3;">
+            canvas doesn't work in your browser, boo hoo, no f-u-n-y for you.
+        </canvas>
+        
+        <a href='javascript:download_canvas();'>download ...</a>
+		<a id='_link'></a>
+       
+        <script>
+			var output_scale = 4.0;
 
-<h1 style='background-color:darkorange; text-align:center;'>f-u-n-y</h1>
+            /*
+                get html elements
+            */
 
-<p>welcome to f-u-n-y homepage!</p>
+            var value = document.getElementById('valueform');
+            var debug = document.getElementById("_debug");    
+            var digits = document.getElementById("_digits");    
+            var canvas = document.getElementById("_canvas");    
+            var context = canvas.getContext("2d");
+            var link = document.getElementById('_link');
+            				
+            /*
+                read form value, match to image & display .jpg
+            */
 
-<form id='valueform' action='/action_page.php'>
-  value: <input type='text' name='value' style='background-color:paleturquoise;'><br>
-</form> 
+            function value_to_jpg() {
+                var text = "";
+                var i;
+                for (i = 0; i < value.length;i++) {
+                    text += value.elements[i].value;
+                }
+                var splitvalue = text.split("");
+                debug.innerHTML = splitvalue;
+                var imgsources = {
+                    0:'images/0.jpg',
+                    1:'images/1.jpg',
+                    2:'images/2.jpg',
+                    3:'images/3.jpg',
+                    4:'images/4.jpg',
+                    5:'images/5.jpg',
+                    6:'images/6.jpg',
+                    7:'images/7.jpg',
+                    8:'images/8.jpg',
+                    9:'images/9.jpg'
+                };
+                for (s of splitvalue) {
+                    var imgsource = imgsources[s];
+                    debug.innerHTML += ' : ' + imgsource;
+                    var img = document.createElement("IMG");
+                    img.setAttribute("src", imgsource);
+                    img.setAttribute("width", 100);
+                    digits.appendChild(img);
+                }
+				build_canvas(digits, output_scale);
+            }
+            
+			/*
+    			collect child images from html element 
+				draw to canvas as sprites
+			*/
 
-<p>click "funy" to make the numbers  become funny</p>
+            function build_canvas(source, scale) {
+                var children = source.children;
+				var canvas_adjusted_width = 0;
+                for (child of children) {
+					canvas_adjusted_width += child.width * scale;
+					canvas_adjusted_height = child.width * scale * 1.5;
+				}
+				canvas.width = canvas_adjusted_width;
+				canvas.height = canvas_adjusted_height;
+				draw_to_canvas(children, scale);
+            };
+            				
+            function draw_to_canvas(children, scale) {
+				var x = 0;
+				var y = 0;
+				var w = 0;
+				var h = 0;
+                for (child of children) {
+					w = child.width * scale;
+					h = w * 1.5;
+                	context.drawImage(child,x,y,w,h);
+					x += w;
+				}
+            };
+            
+            /*
+            	download canvas as png
+            */
 
-<button onclick='myFunction()' style='font-size:200%; font-family:timesnewroman; background-color:mediumturquoise'>funy</button>
-
-<p id='test'></p>
-<p id='test2'></p>
-
-<script>
-function myFunction() {
-  var x = document.getElementById('valueform');
-  var text = "";
-  var i;
-  for (i = 0; i < x.length;i++) {
-    text += x.elements[i].value;
-  }
-  var splitx = text.split("");
-  document.getElementById('test').innerHTML = splitx;
-  var imgsources = {
-    0:'images/0.jpeg',
-    1:'images/1.jpeg',
-    2:'images/2.jpeg',
-    3:'images/3.jpeg',
-    4:'images/4.jpeg',
-    5:'images/5.jpeg',
-    6:'images/6.jpeg',
-    7:'images/7.jpeg',
-    8:'images/8.jpeg',
-    9:'images/9.jpeg'
-  };
-  var num;
-  for (x of splitx) {
-    var imgsource = imgsources[x];
-    document.getElementById('test2').innerHTML = imgsource;
-    var img = document.createElement("IMG");
-    img.setAttribute("src", imgsource);
-    img.setAttribute("width", 100);
-    document.body.appendChild(img);
-  }
-}
-</script>
-
-</body>
+            function download_canvas() {
+				// based on https://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
+				// ** important ** needed to change local file permissions 
+				// under develop menu in safari or it throws a security error
+ 				// see https://developer.apple.com/forums/thread/87778
+	            var download = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+              	link.setAttribute('download', 'f-u-n-y.png');
+              	link.setAttribute('href', download);
+              	link.click();
+			}
+        </script>
+    </body>
 </html>
