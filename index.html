@@ -39,16 +39,17 @@ function myFunction() {
     8:'images/8.jpeg',
     9:'images/9.jpeg'
   };
-  var imgsource = imgsources['5'];
-  document.getElementById('test2').innerHTML = imgsources[5];
-  var img = document.createElement("IMG");
-  img.setAttribute("src", imgsource);
-  img.setAttribute("width", 100);
-  document.body.appendChild(img);
+  var num;
+  for (x of splitx) {
+    var imgsource = imgsources[x];
+    document.getElementById('test2').innerHTML = imgsource;
+    var img = document.createElement("IMG");
+    img.setAttribute("src", imgsource);
+    img.setAttribute("width", 100);
+    document.body.appendChild(img);
+  }
 }
 </script>
-
-<img src='images/6.jpeg' width=100>
 
 </body>
 </html>
