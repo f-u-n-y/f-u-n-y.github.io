@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <!-- 
         <h1 style='background-color:darkorange; text-align:center;'>f-u-n-y</h1>
         
         <p>welcome to f-u-n-y homepage!</p>
-        -->
         
         <form id='valueform' action='/action_page.php'>
             value: <input type='text' name='value' style='background-color:paleturquoise;'><br>
-        </form> 
-        
-        <!--
-        <p>click "funy" to make the numbers become funny</p>
-        
+        </form>
+        <br/> 
+                
         <button onclick='value_to_jpg()' style='font-size:200%; font-family:timesnewroman; background-color:mediumturquoise'>funy</button>
-        -->
-        
-        <button onclick='value_to_jpg()' style='font-size:200%; font-family:timesnewroman; background-color:mediumturquoise'>***</button>
-        
-        <div id='_debug'></div>
+        <br/>
+        <br/>
+           
+        <!-- <div id='_debug'></div> -->
         <div id='_digits'></div>
         
         <canvas id="_canvas" width="100" height="100" style="border:1px solid #d3d3d3;">
@@ -31,14 +26,14 @@
        
         <script>
 			var output_scale = 0.5;
-            var images_src = 'images-blank';
+            var images_src = 'images';
 
             /*
                 get html elements
             */
 
             var value = document.getElementById('valueform');
-            var debug = document.getElementById("_debug");    
+            // var debug = document.getElementById("_debug");    
             var digits = document.getElementById("_digits");    
             var canvas = document.getElementById("_canvas");    
             var context = canvas.getContext("2d");
@@ -55,7 +50,7 @@
                     text += value.elements[i].value;
                 }
                 var splitvalue = text.split("");
-                debug.innerHTML = splitvalue;
+                // debug.innerHTML = splitvalue;
 
                 var imgsources = {
                     0:images_src + '/0.jpg',
@@ -72,7 +67,7 @@
 
                 for (s of splitvalue) {
                     var imgsource = imgsources[s];
-                    debug.innerHTML += ' : ' + imgsource;
+                    // debug.innerHTML += ' : ' + imgsource;
                     var img = document.createElement("IMG");
                     img.setAttribute("src", imgsource);
                     img.setAttribute("width", 100);
