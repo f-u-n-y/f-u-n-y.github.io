@@ -30,7 +30,8 @@
 		<a id='_link'></a>
        
         <script>
-			var output_scale = 4.0;
+			var output_scale = 0.5;
+            var images_src = 'images-blank';
 
             /*
                 get html elements
@@ -55,18 +56,20 @@
                 }
                 var splitvalue = text.split("");
                 debug.innerHTML = splitvalue;
+
                 var imgsources = {
-                    0:'images/0.jpg',
-                    1:'images/1.jpg',
-                    2:'images/2.jpg',
-                    3:'images/3.jpg',
-                    4:'images/4.jpg',
-                    5:'images/5.jpg',
-                    6:'images/6.jpg',
-                    7:'images/7.jpg',
-                    8:'images/8.jpg',
-                    9:'images/9.jpg'
+                    0:images_src + '/0.jpg',
+                    1:images_src + '/1.jpg',
+                    2:images_src + '/2.jpg',
+                    3:images_src + '/3.jpg',
+                    4:images_src + '/4.jpg',
+                    5:images_src + '/5.jpg',
+                    6:images_src + '/6.jpg',
+                    7:images_src + '/7.jpg',
+                    8:images_src + '/8.jpg',
+                    9:images_src + '/9.jpg'
                 };
+
                 for (s of splitvalue) {
                     var imgsource = imgsources[s];
                     debug.innerHTML += ' : ' + imgsource;
